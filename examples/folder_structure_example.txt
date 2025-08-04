@@ -1,0 +1,55 @@
+PDF to Markdown Converter - Example Folder Structure
+
+This shows how to organize your PDF files for optimal processing:
+
+imports/
+├── game_design/                 # Game development project
+│   ├── concept_art.pdf         # Character and environment designs
+│   ├── mechanics_guide.pdf     # Game mechanics documentation
+│   ├── level_design.pdf        # Level layouts and specifications
+│   └── monetization_strategy.pdf # Business model documentation
+│
+├── research_papers/             # Academic research collection
+│   ├── ai_in_games_2024.pdf    # Latest AI research paper
+│   ├── player_behavior_study.pdf # User research findings
+│   ├── procedural_generation.pdf # Technical research
+│   └── vr_immersion_metrics.pdf # VR/AR research
+│
+├── technical_documentation/     # Technical reference materials
+│   ├── unity_api_reference.pdf # Engine documentation
+│   ├── graphics_pipeline.pdf   # Rendering documentation
+│   ├── optimization_guide.pdf  # Performance tuning
+│   └── deployment_manual.pdf   # Release procedures
+│
+├── marketing_materials/         # Marketing and business docs
+│   ├── pitch_deck.pdf          # Investor presentation
+│   ├── market_analysis.pdf     # Industry research
+│   ├── competitor_review.pdf   # Competition analysis
+│   └── launch_strategy.pdf     # Go-to-market plan
+│
+└── quick_reference.pdf          # Single files in root (optional)
+
+Expected Output Structure:
+
+exports/
+├── game_design_2024-01-15_14-30-25.md           # All game dev docs
+├── research_papers_2024-01-15_14-32-10.md       # All research papers
+├── technical_documentation_2024-01-15_14-33-45.md # All tech docs
+├── marketing_materials_2024-01-15_14-35-20.md   # All marketing docs
+├── combined_documents.md                          # Root files
+└── processing_summary_1705337425.md              # Overall report
+
+Benefits of This Structure:
+✅ Organized by purpose/project
+✅ Easy to find specific topics
+✅ Timestamped outputs prevent conflicts
+✅ Separate processing allows focused work
+✅ Scalable to any number of projects
+✅ Perfect for team collaboration
+
+Usage Tips:
+1. Use descriptive folder names (they become output filenames)
+2. Group related documents together
+3. Avoid spaces in folder names (underscores work better)
+4. Test with --list-files before processing
+5. Start with small batches for testing
