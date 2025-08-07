@@ -22,18 +22,21 @@ A comprehensive Python tool that converts PDF files to markdown format with AI-g
 
 ## Installation
 
-1. Clone the repository:
+### 1. Clone the repository
+
 ```bash
 git clone <repository-url>
-cd pdf-to-markdown
+cd pdfs-to-markdown
 ```
 
-2. Install dependencies:
+### 2. Install dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-3. (Optional) For OCR capabilities, install Tesseract:
+### 3. (Optional) For OCR capabilities, install Tesseract
+
 ```bash
 # On macOS
 brew install tesseract
@@ -47,8 +50,11 @@ sudo apt-get install tesseract-ocr
 
 ## Quick Start
 
-1. **Organize your PDF files**: Create folders in the `imports/` directory for different projects:
-```
+### 1. Organize your PDF files
+
+Create folders in the `imports/` directory for different projects:
+
+```bash
 imports/
 ├── game_design/
 │   ├── concept_art.pdf
@@ -59,13 +65,17 @@ imports/
 └── manual.pdf  (optional: files in root)
 ```
 
-2. **Run the converter**:
+### 2. Run the converter
+
 ```bash
 python main.py
 ```
 
-3. **Check your results** in the `exports/` directory:
-```
+### 3. Check your results
+
+Check your results in the `exports/` directory:
+
+```bash
 exports/
 ├── game_design_2024-01-15_14-30-25.md
 ├── research_papers_2024-01-15_14-32-10.md
@@ -153,8 +163,8 @@ VERBOSE=true
 
 ## Project Structure
 
-```
-pdf-to-markdown/
+```bash
+pdfs-to-markdown/
 ├── src/
 │   ├── __init__.py
 │   ├── config.py              # Configuration settings
@@ -177,13 +187,14 @@ The converter generates **separate markdown files for each folder**, plus an ove
 ### Folder-Based Processing
 
 For each folder in `imports/`, you get:
+
 - **Individual markdown file** named `{folder_name}_{timestamp}.md`
 - **Organized content** with all PDFs from that folder
 - **Timestamped filename** to avoid conflicts
 
 ### File Structure Example
 
-```
+```bash
 exports/
 ├── game_design_2024-01-15_14-30-25.md
 ├── research_papers_2024-01-15_14-32-10.md 

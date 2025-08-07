@@ -17,7 +17,7 @@ mkdir -p imports/technical_docs
 
 ### 2. Organize Your PDFs
 
-```
+```bash
 imports/
 ├── game_design/           # Game development PDFs
 │   ├── concept_art.pdf
@@ -35,16 +35,16 @@ imports/
 
 ## 🎯 Processing Behavior
 
-### What Happens When You Run the Converter:
+### What Happens When You Run the Converter
 
 1. **Folder Discovery**: Scans `imports/` for subdirectories containing PDFs
 2. **Individual Processing**: Each folder is processed separately
 3. **Timestamped Outputs**: Each folder gets its own markdown file with timestamp
 4. **Root Files**: PDFs directly in `imports/` are processed as a single group
 
-### Example Output:
+### Example Output
 
-```
+```bash
 exports/
 ├── game_design_2024-01-15_14-30-25.md       # All game design PDFs
 ├── research_papers_2024-01-15_14-32-10.md   # All research papers
@@ -83,7 +83,7 @@ python main.py --imports /path/to/your/pdfs --exports /path/to/output
 
 ## 📊 Example Output Structure
 
-### Individual Folder Output (`game_design_2024-01-15_14-30-25.md`):
+### Individual Folder Output (`game_design_2024-01-15_14-30-25.md`)
 
 ```markdown
 # PDF Documents from 'game_design'
@@ -117,7 +117,7 @@ ___
 [Document content...]
 ```
 
-### Overall Summary Report (`processing_summary_*.md`):
+### Overall Summary Report (`processing_summary_*.md`)
 
 ```markdown
 # Overall Processing Summary
@@ -147,7 +147,7 @@ ___
 
 ## 🎯 Use Cases
 
-### Perfect For:
+### Perfect For
 
 1. **Project Management**: Separate outputs for different projects
 2. **Research Organization**: Group papers by topic or field
@@ -155,7 +155,7 @@ ___
 4. **Content Creation**: Separate game design, art, and technical docs
 5. **Academic Work**: Organize by subject, semester, or research area
 
-### Example Workflows:
+### Example Workflows
 
 ```bash
 # Game Development Studio
@@ -182,19 +182,22 @@ imports/
 
 ## 🔧 Installation & Setup
 
-1. **Install Dependencies**:
+### 1. Install Dependencies
+
 ```bash
 python install_dependencies.py
 # OR manually:
 pip install -r requirements.txt
 ```
 
-2. **Verify Setup**:
+### 2. Verify Setup
+
 ```bash
 python main.py --validate
 ```
 
-3. **Test Folder Discovery**:
+### 3. Test Folder Discovery
+
 ```bash
 python main.py --list-files
 ```

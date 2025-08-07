@@ -25,7 +25,8 @@ Examples:
 
 from src.utils import setup_logging
 from src.config import config
-from src.converter import PDFToMarkdownConverter as DocumentConverter, ConversionResult
+from src.pdf_to_markdown.orchestrator import Orchestrator
+from src.pdf_to_markdown.model import ConversionResult
 from pathlib import Path
 import argparse
 import logging
@@ -137,12 +138,12 @@ def setup_application_logging(verbose: bool = False) -> None:
     setup_logging(log_config)
 
 
-def validate_configuration(converter: DocumentConverter) -> bool:
+def validate_configuration(converter: Orchestrator) -> bool:
     """
     Validate the application configuration.
 
     Args:
-        converter: DocumentConverter instance
+        converter: Orchestrator instance
 
     Returns:
         True if configuration is valid, False otherwise
@@ -297,7 +298,7 @@ def main() -> int:
 
         # Initialize converter
         logger.info("Initializing Document to Markdown converter")
-        converter = DocumentConverter()
+        converter = Orchestrator(verbose=args.verbose)
 
         # Handle validation command
         if args.validate:
@@ -322,19 +323,17 @@ def main() -> int:
         # Perform conversion
         print("🚀 Starting Document to Markdown conversion...")
 
-        # Update converter config for OCR setting
+        # Re-create orchestrator with updated OCR flag if requested
         if args.no_ocr:
+            logger.info("Re-instantiating orchestrator with OCR disabled")
             from dataclasses import replace
-            converter.config = replace(converter.config, ENABLE_OCR=False)
-            # Reinitialize converter with new config
-            converter._setup_docling_converter()
+            new_cfg = replace(converter.cfg, ENABLE_OCR=False)
+            converter = Orchestrator(cfg=new_cfg, verbose=args.verbose)
 
         result = converter.convert(
             imports_dir=args.imports,
             exports_dir=args.exports,
             output_filename=args.output,
-            enable_image_descriptions=True,  # Always enabled with docling
-            verbose=args.verbose
         )
 
         # Print results

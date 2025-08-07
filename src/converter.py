@@ -120,7 +120,7 @@ class PDFToMarkdownConverter:
         imports_dir: Optional[Path] = None,
         exports_dir: Optional[Path] = None,
         output_filename: Optional[str] = None,
-        enable_image_descriptions: bool = True,  # Keep for compatibility
+        # enable_image_descriptions: bool = True,  # Keep for compatibility
         verbose: bool = None
     ) -> ConversionResult:
         """
@@ -338,7 +338,7 @@ class PDFToMarkdownConverter:
         self,
         result: ConversionResult,
         summary_path: Path,
-        start_time: float
+        # start_time: float
     ) -> None:
         """
         Generate a processing summary report.
@@ -477,7 +477,7 @@ class PDFToMarkdownConverter:
             # Check docling availability
             try:
                 # Test docling by creating a converter
-                test_converter = DocumentConverter()
+                # test_converter = DocumentConverter()
                 validation_result["info"]["docling_available"] = True
                 validation_result["info"]["docling_ocr_enabled"] = self.config.ENABLE_OCR
             except ImportError:

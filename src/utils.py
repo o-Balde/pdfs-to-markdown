@@ -120,7 +120,7 @@ def clean_text(text: str) -> str:
     text = re.sub(r'\n{3,}', '\n\n', text)
 
     # Fix hyphenated words at line breaks
-    text = re.sub(r'-\n', '', text)
+    text = text.replace('-\n', '')
 
     # Remove excessive spaces
     text = re.sub(r' +', ' ', text)

@@ -20,14 +20,14 @@ if requirements_path.exists():
     requirements = [req.strip() for req in requirements if req.strip() and not req.startswith("#")]
 
 setup(
-    name="pdf-to-markdown",
+    name="pdfs-to-markdown",
     version="1.0.0",
     author="PDF to Markdown Converter",
     author_email="developer@example.com",
     description="Convert PDF files to markdown format with AI-generated image descriptions",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/pdf-to-markdown",
+    url="https://github.com/yourusername/pdfs-to-markdown",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -60,15 +60,15 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "pdf-to-markdown=main:main",
+            "pdfs-to-markdown=main:main",
         ],
     },
     include_package_data=True,
     zip_safe=False,
     keywords="pdf markdown converter ai image description nlp",
     project_urls={
-        "Bug Reports": "https://github.com/yourusername/pdf-to-markdown/issues",
-        "Source": "https://github.com/yourusername/pdf-to-markdown",
-        "Documentation": "https://github.com/yourusername/pdf-to-markdown#readme",
+        "Bug Reports": "https://github.com/yourusername/pdfs-to-markdown/issues",
+        "Source": "https://github.com/yourusername/pdfs-to-markdown",
+        "Documentation": "https://github.com/yourusername/pdfs-to-markdown#readme",
     },
 )
