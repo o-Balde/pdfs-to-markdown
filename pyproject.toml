@@ -1,65 +1,22 @@
-[build-system]
-requires = [
-    "setuptools>=61.0"
-]
-build-backend = "setuptools.build_meta"
-
-[project]
-name = "pdfs-to-markdown"
-version = "1.0.0"
-description = "Convert PDF files to markdown format with AI-generated image descriptions"
+[tool.poetry]
+name = "pdf-to-markdown-converter"
+version = "2.1.0"
+description = "A powerful PDF to Markdown converter using Docling"
+authors = ["Your Name <your.email@example.com>"]
 readme = "README.md"
-requires-python = ">=3.8"
-license = { name = "MIT" }
-keywords = [
-    "pdf", "markdown", "converter", "ai", "image", "description", "nlp"
-]
-authors = [
-    { name = "Guilherme Bermêo", email = "guilherme@bermeo.dev" }
-]
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "Intended Audience :: End Users/Desktop",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Topic :: Text Processing :: Markup",
-    "Topic :: Scientific/Engineering :: Artificial Intelligence",
-    "Topic :: Office/Business :: Office Suites",
-]
+packages = [{include = "src"}]
 
-# Core runtime dependencies
-dependencies = [
-    "docling>=2.43.0",
-    "python-dotenv>=1.0.0",
-    "tqdm>=4.66.0",
-]
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+docling = ">=2.43.0"
+python-dotenv = ">=1.0.0"
+tqdm = ">=4.66.0"
 
-[project.optional-dependencies]
-# Development tooling
-dev = [
-    "pytest>=7.0.0",
-    "pytest-cov>=4.0.0",
-    "black>=23.0.0",
-    "mypy>=1.7.0",
-    "flake8>=6.0.0",
-    "ruff>=0.12.7",
-]
-# OCR support
-ocr = [
-    "pytesseract>=0.3.10",
-]
+[tool.poetry.group.dev.dependencies]
+black = "^24.0.0"
+mypy = "^1.8.0"
+ruff = "^0.1.0"
 
-[project.scripts]
-pdfs-to-markdown = "main:main"
-
-[project.urls]
-"Bug Reports" = "https://github.com/o-Balde/pdfs-to-markdown/issues"
-"Source" = "https://github.com/o-Balde/pdfs-to-markdown"
-"Documentation" = "https://github.com/o-Balde/pdfs-to-markdown#readme"
-
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

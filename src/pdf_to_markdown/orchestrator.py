@@ -92,31 +92,51 @@ class Orchestrator:
 
             logger.info("🔄 Processing folder '%s' (%d files)",
                         folder_name, len(files))
-            markdown_blobs: List[str] = []
-            for file_path in files:
-                try:
-                    blob = self.transformer.transform(file_path)
-                    markdown_blobs.append(blob)
-                    result.processed_folders.setdefault(
-                        folder_name, []).append(file_path.name)
-                except Exception as exc:
-                    logger.exception(
-                        "Failed converting %s: %s", file_path, exc)
-                    result.failed_files.append(file_path.name)
-
-            if not markdown_blobs:
-                logger.warning(
-                    "No markdown content produced for folder %s", folder_name)
-                continue
-
             # Determine output file name
             out_name = (
-                output_filename if folder_name == "_root" else generate_timestamp_filename(
-                    folder_name)
+                output_filename if folder_name == "_root" else f"{folder_name}.md"
             )
             out_path = exports_path / out_name
-            self._save_combined_markdown(markdown_blobs, out_path, folder_name)
-            result.output_files.append(out_path)
+            
+            logger.info("🔄 Processing folder '%s' (%d files) -> %s",
+                        folder_name, len(files), out_name)
+
+            # Open file for writing - wipes existing content
+            try:
+                with open(out_path, "w", encoding="utf-8") as out_f:
+                    # Write Header
+                    display_name = "Root Directory" if folder_name == "_root" else folder_name
+                    header = f"# Combined Documents – {display_name}\n\n" f"*Generated from {len(files)} document(s)*\n\n"
+                    out_f.write(header)
+
+                    for file_path in files:
+                        try:
+                            # Force garbage collection if needed, but scope cleanup should handle most
+                            blob = self.transformer.transform(file_path)
+                            
+                            # Write immediately
+                            out_f.write(blob)
+                            
+                            # Add separator
+                            out_f.write("\n\n----------------\n\n")
+                            
+                            result.processed_folders.setdefault(
+                                folder_name, []).append(file_path.name)
+                                
+                            # Optional: Log progress for large folders
+                            logger.debug("   Written %s", file_path.name)
+                            
+                        except Exception as exc:
+                            logger.exception(
+                                "Failed converting %s: %s", file_path, exc)
+                            result.failed_files.append(file_path.name)
+
+                result.output_files.append(out_path)
+            
+            except Exception as e:
+                logger.error("Failed to write to %s: %s", out_path, e)
+                # If we can't write the file, mark whole folder as failed or handle appropriately
+
 
         # Finalise result
         result.stop_timer(start_time)

@@ -23,6 +23,13 @@ Examples:
     python main.py --verbose
 """
 
+import os
+import sys
+
+# Sanitize environment to prevent PyTorch crash
+os.environ.pop("TORCH_LOGS", None)
+os.environ.pop("TORCH_CPP_LOG_LEVEL", None)
+
 from src.utils import setup_logging
 from src.config import config
 from src.pdf_to_markdown.orchestrator import Orchestrator

@@ -2,21 +2,21 @@
 # PDF to Markdown Converter - Run Helper
 # This script ensures virtual environment is active and uses correct Python
 
-# Check if virtual environment exists
-if [ ! -d ".venv" ]; then
-    echo "❌ Virtual environment not found. Please run: python3 -m venv .venv"
+# Check if poetry is installed
+if ! command -v poetry &> /dev/null; then
+    echo "❌ Poetry not found. Please install it first: https://python-poetry.org/docs/#installation"
+    echo "   Or run: curl -sSL https://install.python-poetry.org | python3 -"
     exit 1
 fi
 
-# Activate virtual environment
-echo "🔄 Activating virtual environment..."
-source .venv/bin/activate
-
-# Verify PyMuPDF is available
-if ! python3 -c "import fitz" 2>/dev/null; then
-    echo "❌ PyMuPDF not found. Installing..."
-    python3 -m pip install PyMuPDF
+echo "📦 Installing/Updating dependencies with Poetry..."
+# This handles the python version check automatically based on pyproject.toml
+if ! poetry install; then
+    echo "❌ Poetry install failed. Please check the errors above."
+    echo "💡 Note: You need Python 3.10, 3.11, or 3.12 installed on your system."
+    exit 1
 fi
 
 echo "✅ Running PDF to Markdown converter..."
-python3 main.py "$@"
+# Run the script within the poetry environment
+poetry run python main.py "$@"
